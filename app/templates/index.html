@@ -41,16 +41,15 @@
                     <a href="/tweet:{{ tweet["id"] }}">
                         {{ tweet["text"]}}
                     </a>
-
-                        
+                    <p>
+                        The sentiment of this tweet appears to be: {{ sentiment }}
+                    </p>
                         <a href="/remove_status:{{ tweet["id"] }}" id={{ tweet["id"] }} ><i class="fa fa-trash-o pull-right"></i></a>
                         <!-- <form action="/remove_status"  value="test" style="display: inline-block;">
                             <button type="submit" class="pull-right">
                                 <i class="fa fa-trash-o pull-right"></i>
                             </button>
                         </form> -->
-
-
                 </div>
                 {% endfor %}
             </div>
