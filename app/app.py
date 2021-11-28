@@ -1,3 +1,4 @@
+from math import e
 from flask import Flask, render_template, request, redirect, url_for
 import tweepy
 from keys import consumer_key, consumer_secret, access_token, access_token_secret
@@ -42,11 +43,28 @@ def home():
         content = request.form['content']
         new_status = api.update_status(content)
         print(content)
-
+    tweet_data = []
     try:
         tweets = api.user_timeline(name)
+        
     except:
         tweets = None
+    sentiments = []
+    try:
+        for tweet in tweets:
+            sentiment = apply_prediction(tweet.text)
+            sentiments.append(sentiment)
+            tweet_data.append({
+                "text": tweet.text,
+                "id": tweet.id,
+                "sentiment": sentiment
+            })
+        #print(tweet_data)
+        tweets = tweet_data
+        #print(tweets)
+    except:
+        print("something with apply prediction fxn")
+
     return render_template("index.html", name=name, tweets=tweets)
 
 
@@ -55,12 +73,22 @@ def get_single_tweet(id):
 
     sentiment = None
     try:
+        #print(id)
         tweet = [api.get_status(id)]
-        for x in tweet:
-            sentiment = apply_prediction(x.text)
+        #print(tweet)
+        tweet = [{
+            "text": tweet[0].text,
+            "id": id,
+            "sentiment": apply_prediction(tweet[0].text)
+        }]
+        print(tweet)
+
     except:
         tweet = None
-    return render_template("index.html", tweets=tweet, sentiment=sentiment)
+        print('error getting tweet!!!!')
+
+    # sentiment = apply_prediction(tweet[0].text)
+    return render_template("index.html", tweets=tweet)
 
 
 @app.route("/status", methods=["GET", "POST"])
