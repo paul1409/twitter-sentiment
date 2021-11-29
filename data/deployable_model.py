@@ -12,6 +12,7 @@ from tensorflow.keras.callbacks import EarlyStopping
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import f1_score
+from sklearn.linear_model import LogisticRegression
 
 import re
 import pickle
@@ -38,6 +39,10 @@ model2.add(Dense(10, input_dim=input_dim,activation='relu'))
 model2.add(Dense(2, activation='softmax'))
 model2.compile(loss='categorical_crossentropy',optimizer='adam')
 model2.load_weights("data/model2.hdf5")
+
+with open("data/model4.pkl", 'rb') as file:
+    model4 = pickle.load(file)
+
 
 
 
@@ -67,5 +72,10 @@ pred_model1 = get_predictions(text, model1)
 pred_model2 = get_predictions(text, model2)
 pred_model1
 pred_model2
+
+# logistic regression
+text = vectorizer.transform([text]).toarray()
+prediction = model4.predict(text)
+prediction[0]
 
 
