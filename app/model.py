@@ -12,7 +12,7 @@ import numpy as np
 import pandas as pd
 import tensorflow as tf
 
-data = pd.read_csv('Twitter_training.csv', names=[
+data = pd.read_csv('twitter_training.csv', names=[
                    "Tweet_ID", "Entity", "Sentiment", "Text"])
 data = data[['Text', 'Sentiment']]
 data = data[data.Sentiment != "Neutral"]
