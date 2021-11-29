@@ -62,20 +62,21 @@ model.compile(
     metrics=['accuracy']
 )
 
-Y = pd.get_dummies(data.Sentiment).values
-X_train, X_test, Y_train, Y_test = train_test_split(
-    X, Y, test_size=0.33, random_state=42)
+# Y = pd.get_dummies(data.Sentiment).values
+# X_train, X_test, Y_train, Y_test = train_test_split(
+#     X, Y, test_size=0.33, random_state=42)
 
 
 def setup():
-    model.fit(X_train, Y_train, epochs=10, batch_size=32,
-              callbacks=[tf.keras.callbacks.EarlyStopping(monitor='accuracy', patience=4)], verbose=1)
+    model.load_weights('weights.hdf5')
+    # model.fit(X_train, Y_train, epochs=10, batch_size=32,
+    #           callbacks=[tf.keras.callbacks.EarlyStopping(monitor='accuracy', patience=4)], verbose=1)
 
 
 def apply_prediction(twt):
     twtData = tokenizer.texts_to_sequences([twt])
-    twtData = pad_sequences(twtData, maxlen=28, dtype='int32', value=0)
-    print(twtData)
+    twtData = pad_sequences(twtData, maxlen=99, dtype='int32', value=0)
+    # print(twtData)
     sentiment = model.predict(twtData, batch_size=1, verbose=2)[0]
     sentimentValue = "negative" if(np.argmax(sentiment) == 0) else "positive"
     return sentimentValue
