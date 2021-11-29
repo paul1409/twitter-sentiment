@@ -41,9 +41,15 @@
                     <a href="/tweet:{{ tweet["id"] }}">
                         {{ tweet["text"]}}
                     </a>
+                    {% if tweet.sentiment == 'positive' %}
                     <p>
-                        The sentiment of this tweet appears to be: {{ sentiment }}
+                        The sentiment of this tweet appears to be: <span style='color: blue'>{{ tweet['sentiment'] }}</span>
                     </p>
+                    {% else %}
+                    <p>
+                      The sentiment of this tweet appears to be: <span style='color: red'>{{ tweet['sentiment'] }}</span>
+                    </p>
+                    {% endif %}
                         <a href="/remove_status:{{ tweet["id"] }}" id={{ tweet["id"] }} ><i class="fa fa-trash-o pull-right"></i></a>
                         <!-- <form action="/remove_status"  value="test" style="display: inline-block;">
                             <button type="submit" class="pull-right">
