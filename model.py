@@ -80,3 +80,5 @@ def apply_prediction(twt):
     sentiment = model.predict(twtData, batch_size=1, verbose=2)[0]
     sentimentValue = "negative" if(np.argmax(sentiment) == 0) else "positive"
     return sentimentValue
+
+
