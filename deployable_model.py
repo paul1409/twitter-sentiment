@@ -1,20 +1,5 @@
-import numpy as np
-from numpy.lib.function_base import vectorize
-import pandas as pd
-import tensorflow as tf
-from tensorflow.keras.layers import Dense, Activation
+from tensorflow.keras.layers import Dense
 from tensorflow.keras.models import Sequential
-
-from tensorflow.keras.preprocessing.text import Tokenizer
-from tensorflow.keras.preprocessing.sequence import pad_sequences
-from tensorflow.keras.callbacks import ModelCheckpoint
-from tensorflow.keras.callbacks import EarlyStopping
-from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import f1_score
-from sklearn.linear_model import LogisticRegression
-
-import re
 import pickle
 
 labels = ['negative', 'positive']

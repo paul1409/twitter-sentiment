@@ -3,9 +3,9 @@ from flask import Flask, render_template, request, redirect, url_for
 import tweepy
 # from keys import consumer_key, consumer_secret, access_token, access_token_secret
 consumer_key = "iPNBiD61yXuISv8y9XWr2yzoC"
-consumer_secret = "LACyQ2yJIWNtMAO8UlBOE0LLZSDXJOVaoswPnwWXd6w4jEm1ru"
-access_token = "1311486910322286592-FOruybm5pHe0sePabEcwxu5EnPLu7D"
-access_token_secret = "u8QRfPwwn1furI7RMqnItJ6Q5l07vjMdWs5tQ8gYpb68U"
+consumer_secret = "bEUNbt7NXFra8beLVRcIPZ0KhRMwgV4oYDfkm8LtKhkhdoTKDN"
+access_token = "1311486910322286592-zPVVjajGcQpetSi9hvSiRE4b5N5xDo"
+access_token_secret = "hKsMDfGPtKuzFcUPJlyYZ4zO4PqziNzxssEEW0fFZJrtg"
 from model import setup, apply_prediction
 
 # print(consumer_key, consumer_secret, access_token, access_token_secret)
@@ -14,11 +14,17 @@ from model import setup, apply_prediction
 
 try:
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+    print(auth)
     auth.set_access_token(access_token, access_token_secret)
+    print(auth)
     api = tweepy.API(auth)
+    print(api)
     me = api.me()
+    print(me)
+    print("lsdfjksdlfjdsljfds")
     name = me.screen_name
     tweets = api.user_timeline(name)
+    print(tweets)
     setup()
 except:
     me = None
