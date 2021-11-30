@@ -34,10 +34,10 @@ except:
 # ]
 
 
-app = Flask(__name__)
+application = Flask(__name__)
 
 
-@app.route("/", methods=["GET", "POST"])
+@application.route("/", methods=["GET", "POST"])
 def home():
     if request.method == "POST":
         content = request.form['content']
@@ -68,7 +68,7 @@ def home():
     return render_template("index.html", name=name, tweets=tweets)
 
 
-@app.route("/tweet:<id>", methods=["GET", "POST"])
+@application.route("/tweet:<id>", methods=["GET", "POST"])
 def get_single_tweet(id):
 
     sentiment = None
@@ -91,12 +91,12 @@ def get_single_tweet(id):
     return render_template("index.html", tweets=tweet)
 
 
-@app.route("/status", methods=["GET", "POST"])
+@application.route("/status", methods=["GET", "POST"])
 def post_status():
     return render_template("post_status.html", name=name)
 
 
-@app.route("/remove_status:<id>", methods=["GET", "POST"])
+@application.route("/remove_status:<id>", methods=["GET", "POST"])
 def get_status(id):
     print(id)
     try:
@@ -107,4 +107,4 @@ def get_status(id):
 
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    application.run(debug=False)

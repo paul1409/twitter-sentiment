@@ -1,8 +1,8 @@
-from keras.preprocessing.text import Tokenizer
-from keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.preprocessing.sequence import pad_sequences
 from sklearn.model_selection import train_test_split
-from keras.layers import Dense, Embedding, LSTM, SpatialDropout1D
-from keras.models import Sequential
+from tensorflow.keras.layers import Dense, Embedding, LSTM, SpatialDropout1D
+from tensorflow.keras.models import Sequential
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
